@@ -1,0 +1,1126 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>JJ Pathfinder — Case Study &amp; Viral Retention Breakdown</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-container": "#9ee5ff",
+            "on-surface": "#e2e2ea",
+            "surface-card": "#0D1117",
+            "neon-cyan-glow": "rgba(0, 242, 254, 0.25)",
+            "error-container": "#93000a",
+            "surface-bright": "#37393f",
+            "primary-fixed": "#6ff6ff",
+            "surface-container-high": "#282a30",
+            "text-secondary": "#94A3B8",
+            "secondary-fixed": "#e2dfff",
+            "accent-emerald": "#10B981",
+            "on-secondary-fixed-variant": "#3323cc",
+            "on-secondary": "#1d00a5",
+            "on-surface-variant": "#b9cacb",
+            "on-tertiary-fixed-variant": "#004e60",
+            "on-error": "#690005",
+            "on-primary-fixed": "#002022",
+            "secondary-fixed-dim": "#c3c0ff",
+            "surface-container-low": "#191c21",
+            "border-subtle": "rgba(255, 255, 255, 0.08)",
+            "surface-variant": "#33353b",
+            "tertiary-fixed-dim": "#47d6ff",
+            "on-error-container": "#ffdad6",
+            "outline": "#849495",
+            "surface-container-lowest": "#0c0e13",
+            "on-background": "#e2e2ea",
+            "primary-fixed-dim": "#00dce6",
+            "text-muted": "#64748B",
+            "surface-container": "#1d2025",
+            "surface-dim": "#111319",
+            "on-tertiary-fixed": "#001f28",
+            "on-primary-container": "#006a70",
+            "background": "#111319",
+            "on-tertiary-container": "#006880",
+            "on-secondary-fixed": "#0f0069",
+            "surface": "#111319",
+            "primary": "#e0fdff",
+            "outline-variant": "#3a494b",
+            "error": "#ffb4ab",
+            "on-secondary-container": "#b3b1ff",
+            "surface-tint": "#00dce6",
+            "on-primary-fixed-variant": "#004f53",
+            "inverse-on-surface": "#2e3036",
+            "secondary-container": "#3626ce",
+            "tertiary-fixed": "#b6ebff",
+            "secondary": "#c3c0ff",
+            "inverse-surface": "#e2e2ea",
+            "inverse-primary": "#00696f",
+            "surface-container-highest": "#33353b",
+            "on-primary": "#00373a",
+            "surface-elevated": "#161B22",
+            "border-glow": "rgba(0, 242, 254, 0.35)",
+            "text-primary": "#F8FAFC",
+            "on-tertiary": "#003543",
+            "surface-base": "#07090E",
+            "primary-container": "#00f2fe",
+            "tertiary": "#edf9ff"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-xl": "2.5rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1.5rem",
+            "margin-mobile": "1rem",
+            "margin-desktop": "3.5rem",
+            "margin": "2rem",
+            "space-2xl": "4rem",
+            "gutter-mobile": "1rem",
+            "gutter": "1.5rem"
+          },
+          "fontFamily": {
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Inter"],
+            "display-hero": ["Plus Jakarta Sans"],
+            "body-sm": ["Inter"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-xl-mobile": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "body-md": ["Inter"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "700"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+            "display-hero": ["56px", {"lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+            "body-sm": ["13px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "400"}],
+            "headline-sm": ["18px", {"lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "display-hero-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+            "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+            "headline-xl-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+            "headline-lg": ["30px", {"lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-md": ["15px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.025em", "fontWeight": "700"}],
+            "headline-md": ["22px", {"lineHeight": "30px", "letterSpacing": "-0.015em", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .hud-grid {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+    @keyframes sfxPulse {
+      0% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.6); }
+      70% { box-shadow: 0 0 0 10px rgba(0, 242, 254, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 242, 254, 0); }
+    }
+    .pulse-trigger {
+      animation: sfxPulse 0.6s ease-out;
+    }
+
+    /* Page Mount Entrance Animation */
+    @keyframes pageEnter {
+      0% {
+        opacity: 0;
+        transform: translateY(8px) scale(0.998);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+      }
+    }
+
+    .page-mount-enter {
+      animation: pageEnter 380ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      will-change: transform, opacity;
+    }
+
+    /* Cinematic Cybernetic Scanline Sweep Overlay */
+    #transitionOverlay {
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 80ms ease-out;
+    }
+
+    #transitionOverlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    @keyframes scanlineSweep {
+      0% {
+        transform: translateY(-100%);
+        opacity: 0.3;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0.1;
+      }
+    }
+
+    #transitionOverlay.active .scanline-bar {
+      animation: scanlineSweep 320ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .page-mount-enter {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      #transitionOverlay.active .scanline-bar {
+        animation: none !important;
+      }
+      #transitionOverlay {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-surface-base text-text-primary antialiased selection:bg-primary-container selection:text-surface-base relative overflow-x-hidden font-body-md text-body-md page-mount-enter">
+<!-- Cinematic Cybernetic Scanline Sweep Overlay -->
+<div aria-hidden="true" class="fixed inset-0 z-[100] bg-surface-dim/80 backdrop-blur-[6px] flex flex-col justify-between overflow-hidden shadow-[inset_0_0_120px_rgba(7,9,14,0.95)]" id="transitionOverlay">
+<!-- Top & Bottom Obsidian Vignettes -->
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,242,254,0.06)_0%,rgba(17,19,25,0.85)_75%,rgba(7,9,14,0.98)_100%)] pointer-events-none"></div>
+<!-- Sweeping Cyan Scanline Aura Bar -->
+<div class="scanline-bar absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-transparent via-primary-container/40 to-transparent pointer-events-none flex items-center justify-center">
+<div class="w-full h-[2px] bg-primary-container shadow-[0_0_24px_#00f2fe,0_0_48px_#00f2fe]"></div>
+</div>
+<!-- Subtle Route Status Telemetry Readout -->
+<div class="absolute bottom-8 right-8 flex items-center gap-3 px-4 py-2 rounded-lg bg-surface-card/90 border border-primary-container/40 backdrop-blur-md shadow-[0_0_20px_rgba(0,242,254,0.2)]">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-ping"></span>
+<span class="font-mono text-label-sm text-primary-container tracking-widest uppercase">ROUTING TELEMETRY // ENGAGED</span>
+</div>
+</div>
+<!-- HUD Ambient Glow Top -->
+<div class="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-primary-container/10 blur-[140px] rounded-full"></div>
+<!-- SECTION 1: Top Navigation (Shared Component JSON Source of Truth) -->
+<header class="fixed top-0 left-0 right-0 z-50 w-full bg-surface-card/80 dark:bg-surface-card/80 backdrop-blur-md shadow-2xl border-b border-border-subtle">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-14 flex items-center justify-between h-20">
+<!-- Brand Logo Anchor -->
+<a class="flex items-center gap-3 group transition-route-trigger" href="index.html"><div class="w-8 h-8 rounded-lg bg-surface-elevated border border-primary-container/40 flex items-center justify-center shadow-[0_0_12px_rgba(0,242,254,0.3)] group-hover:scale-105 group-hover:border-primary-container transition-all duration-200"><svg class="w-5 h-5 text-primary-container drop-shadow-[0_0_6px_rgba(0,242,254,0.6)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v9a3 3 0 0 1-3 3H4"></path><path d="M15 5v11a3.5 3.5 0 0 1-3.5 3.5H10"></path></svg></div><span class="text-headline-md font-headline-md tracking-tight font-extrabold text-text-primary dark:text-text-primary">JJ PATHFINDER</span></a>
+<!-- Desktop Links (Case Study active under 'Work') -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="transition-route-trigger text-primary-container dark:text-primary-container font-semibold drop-shadow-[0_0_8px_rgba(0,242,254,0.35)] font-label-lg text-label-lg" href="#work">Work</a>
+<a class="transition-route-trigger text-text-secondary dark:text-text-secondary hover:text-text-primary dark:hover:text-text-primary transition-colors duration-200 hover:text-primary-container dark:hover:text-primary-container font-label-lg text-label-lg" href="#services">Services</a>
+<a class="transition-route-trigger text-text-secondary dark:text-text-secondary hover:text-text-primary dark:hover:text-text-primary transition-colors duration-200 hover:text-primary-container dark:hover:text-primary-container font-label-lg text-label-lg" href="#metrics">Metrics</a>
+<a class="transition-route-trigger text-text-secondary dark:text-text-secondary hover:text-text-primary dark:hover:text-text-primary transition-colors duration-200 hover:text-primary-container dark:hover:text-primary-container font-label-lg text-label-lg" href="#about">About</a>
+<a class="transition-route-trigger text-text-secondary dark:text-text-secondary hover:text-text-primary dark:hover:text-text-primary transition-colors duration-200 hover:text-primary-container dark:hover:text-primary-container font-label-lg text-label-lg" href="#contact">Contact</a>
+</nav>
+<!-- Trailing CTAs -->
+<div class="flex items-center gap-4">
+
+<a class="transition-route-trigger inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary-container to-primary-fixed-dim text-surface-base font-label-lg text-label-lg font-bold shadow-[0_4px_20px_-2px_rgba(0,242,254,0.4)] hover:scale-[1.02] active:scale-95 transition-all duration-200" href="#contact">
+<span class="">Initiate Project</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+</header>
+<main class="pt-28 pb-20">
+<!-- SECTION 2: Case Study Hero & Executive Metrics -->
+<section class="max-w-[1440px] mx-auto px-6 lg:px-14 py-12 hud-grid relative">
+<div class="max-w-4xl mx-auto text-center space-y-6">
+<!-- Eyebrow Pill Badges -->
+<div class="inline-flex flex-wrap items-center justify-center gap-3">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/10 border border-primary-container/30 text-primary-container font-label-md text-label-md">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+            FINTECH &amp; DTC MEDIA GROUP
+          </div>
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-card border border-border-subtle text-text-secondary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[14px] text-primary-container" data-icon="auto_videocam">auto_videocam</span>
+            10-Episode Documentary &amp; 45-Cut Short-Form Sprint
+          </div>
+</div>
+<!-- Headline -->
+<h1 class="text-display-hero-mobile md:text-display-hero font-display-hero font-extrabold tracking-tight text-text-primary leading-tight">
+          Scaling Watch Time by <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-container via-tertiary-fixed to-text-primary">318%</span> &amp; Generating $1.4M Pipeline from YouTube Documentaries
+        </h1>
+<!-- Executive Subtitle -->
+<p class="text-body-lg font-body-lg text-text-secondary max-w-2xl mx-auto">
+          An architectural post-production overhaul transforming unrefined 8K multi-camera studio shoots into an algorithmic retention juggernaut with cinematic pacing and multi-tiered monetization hooks.
+        </p>
+<!-- Metadata HUD Bar -->
+<div class="pt-2 flex flex-wrap items-center justify-center gap-6 text-text-muted font-label-sm text-label-sm tracking-widest uppercase">
+<span class="flex items-center gap-1.5"><span class="text-primary-container">PRODUCER:</span> JJ PATHFINDER LABS</span>
+<span class="w-1 h-1 rounded-full bg-border-subtle"></span>
+<span class="flex items-center gap-1.5"><span class="text-primary-container">TIMEFRAME:</span> 30-DAY MEDIA BLITZ</span>
+<span class="w-1 h-1 rounded-full bg-border-subtle"></span>
+<span class="flex items-center gap-1.5"><span class="text-primary-container">PIPELINE GAIN:</span> $1,420,000</span>
+</div>
+</div>
+<!-- High-Impact Stat Bar (Bento Grid Style) -->
+<div class="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="metrics">
+<!-- Stat 1 -->
+<div class="group relative bg-surface-card rounded-xl p-6 border border-border-subtle hover:border-primary-container/40 transition-all duration-300 hover:-translate-y-1">
+<div class="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-primary-container/40 to-transparent"></div>
+<div class="flex items-center justify-between mb-4">
+<span class="text-text-secondary font-label-md text-label-md">Average Retention</span>
+<div class="w-8 h-8 rounded-lg bg-surface-elevated flex items-center justify-center border border-border-subtle text-primary-container">
+<span class="material-symbols-outlined text-[18px]" data-icon="trending_up">trending_up</span>
+</div>
+</div>
+<div class="text-headline-xl font-headline-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-text-primary">+318%</div>
+<p class="mt-2 text-text-secondary font-body-sm text-body-sm">From 2:14 baseline to 9:18 average watch duration across 10 main episodes.</p>
+</div>
+<!-- Stat 2 -->
+<div class="group relative bg-surface-card rounded-xl p-6 border border-border-subtle hover:border-primary-container/40 transition-all duration-300 hover:-translate-y-1">
+<div class="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-primary-container/40 to-transparent"></div>
+<div class="flex items-center justify-between mb-4">
+<span class="text-text-secondary font-label-md text-label-md">Organic Reach</span>
+<div class="w-8 h-8 rounded-lg bg-surface-elevated flex items-center justify-center border border-border-subtle text-primary-container">
+<span class="material-symbols-outlined text-[18px]" data-icon="visibility">visibility</span>
+</div>
+</div>
+<div class="text-headline-xl font-headline-xl font-extrabold text-text-primary">4.2M</div>
+<p class="mt-2 text-text-secondary font-body-sm text-body-sm">Aggregated non-paid YouTube &amp; Shorts algorithmic view distribution.</p>
+</div>
+<!-- Stat 3 -->
+<div class="group relative bg-surface-card rounded-xl p-6 border border-border-subtle hover:border-primary-container/40 transition-all duration-300 hover:-translate-y-1">
+<div class="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-primary-container/40 to-transparent"></div>
+<div class="flex items-center justify-between mb-4">
+<span class="text-text-secondary font-label-md text-label-md">Critical 30s Retention</span>
+<div class="w-8 h-8 rounded-lg bg-surface-elevated flex items-center justify-center border border-border-subtle text-primary-container">
+<span class="material-symbols-outlined text-[18px]" data-icon="speed">speed</span>
+</div>
+</div>
+<div class="text-headline-xl font-headline-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-primary-container to-text-primary">68.4%</div>
+<p class="mt-2 text-text-secondary font-body-sm text-body-sm">Industry benchmark is 38%; engineered via kinetic hook micro-edits.</p>
+</div>
+<!-- Stat 4 -->
+<div class="group relative bg-surface-card rounded-xl p-6 border border-border-subtle hover:border-primary-container/40 transition-all duration-300 hover:-translate-y-1">
+<div class="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-primary-container/40 to-transparent"></div>
+<div class="flex items-center justify-between mb-4">
+<span class="text-text-secondary font-label-md text-label-md">Execution Velocity</span>
+<div class="w-8 h-8 rounded-lg bg-surface-elevated flex items-center justify-center border border-border-subtle text-primary-container">
+<span class="material-symbols-outlined text-[18px]" data-icon="bolt">bolt</span>
+</div>
+</div>
+<div class="text-headline-xl font-headline-xl font-extrabold text-text-primary">48h SLA</div>
+<p class="mt-2 text-text-secondary font-body-sm text-body-sm">Sprint SLA maintained consistently across 45 unique master cut deliverables.</p>
+</div>
+</div>
+</section>
+<!-- SECTION 3: Interactive Before & After Timeline Polish Breakdown -->
+<section class="max-w-[1440px] mx-auto px-6 lg:px-14 py-16" id="work">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+<div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/10 border border-primary-container/20 text-primary-container font-label-md text-label-md mb-3">
+<span class="material-symbols-outlined text-[14px]" data-icon="compare">compare</span>
+            AUDIO-VISUAL RE-ENGINEERING
+          </div>
+<h2 class="text-headline-xl-mobile md:text-headline-xl font-headline-xl text-text-primary">
+            Before &amp; After: Timeline Polish Breakdown
+          </h2>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-accent-emerald animate-ping"></span>
+<span class="text-text-secondary font-label-md text-label-md">Interactive Visual Comparison</span>
+</div>
+</div>
+<!-- NEW: Interactive Procedural Web Audio API Audio Telemetry Control Bar -->
+<div class="mb-10 bg-surface-card rounded-2xl border border-primary-container/30 p-5 lg:p-6 shadow-[0_0_30px_rgba(0,242,254,0.08)] relative overflow-hidden" id="audio-telemetry-panel">
+<div class="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-primary-container to-transparent"></div>
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5 pb-5 border-b border-border-subtle">
+<!-- Left: Telemetry Title & SFX Master Toggle -->
+<div class="flex flex-wrap items-center gap-3 sm:gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]" data-icon="graphic_eq">graphic_eq</span>
+<span class="font-headline-sm text-headline-sm text-text-primary tracking-wide text-[16px]">WEB AUDIO TELEMETRY SYNTH</span>
+</div>
+<!-- SFX Toggle Pill -->
+<button class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-container/15 border border-primary-container text-primary-container font-label-md text-label-md transition-all duration-200 hover:bg-primary-container/25 shadow-[0_0_12px_rgba(0,242,254,0.3)]" id="sfx-master-toggle">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse" id="sfx-toggle-indicator"></span>
+<span class="font-bold" id="sfx-toggle-label">SFX: ON</span>
+</button>
+<!-- Harmonic Chime Note Indicator Badge -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-elevated border border-border-subtle font-mono text-primary-container text-label-sm font-semibold transition-all duration-200" id="harmonic-note-display">
+<span class="material-symbols-outlined text-[15px] text-primary-container" data-icon="music_note">music_note</span>
+<span id="harmonic-note-text" class="">CHIME: D5 (587Hz)</span>
+</div>
+</div>
+<!-- Right: Telemetry Gain & Tail Selector Groups -->
+<div class="flex flex-wrap items-center gap-5 sm:gap-6">
+<!-- Volume Selector -->
+<div class="flex items-center gap-2">
+<span class="text-text-muted font-label-sm text-label-sm uppercase tracking-wider">VOL:</span>
+<div class="inline-flex rounded-lg bg-surface-elevated p-1 border border-border-subtle gap-1" id="vol-selector-group">
+<button class="px-2.5 py-1 rounded text-label-sm text-text-secondary hover:text-text-primary transition-all duration-150" data-vol="-6">-6dB</button>
+<button class="px-2.5 py-1 rounded text-label-sm bg-primary-container text-surface-base font-bold shadow-[0_0_10px_rgba(0,242,254,0.4)] transition-all duration-150" data-vol="-3">-3dB</button>
+<button class="px-2.5 py-1 rounded text-label-sm text-text-secondary hover:text-text-primary transition-all duration-150" data-vol="0">0dB</button>
+</div>
+</div>
+<!-- Tail Duration Selector -->
+<div class="flex items-center gap-2">
+<span class="text-text-muted font-label-sm text-label-sm uppercase tracking-wider">TAIL:</span>
+<div class="inline-flex rounded-lg bg-surface-elevated p-1 border border-border-subtle gap-1" id="tail-selector-group">
+<button class="px-2.5 py-1 rounded text-label-sm text-text-secondary hover:text-text-primary transition-all duration-150" data-tail="0.3">0.3s</button>
+<button class="px-2.5 py-1 rounded text-label-sm bg-primary-container text-surface-base font-bold shadow-[0_0_10px_rgba(0,242,254,0.4)] transition-all duration-150" data-tail="0.7">0.7s</button>
+<button class="px-2.5 py-1 rounded text-label-sm text-text-secondary hover:text-text-primary transition-all duration-150" data-tail="1.2">1.2s</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Audio Cues & Chapter Audition Buttons -->
+<div class="pt-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
+<div class="flex items-center gap-2 text-text-muted font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary-container" data-icon="sensors">sensors</span>
+<span class="">CUE AUDITION PITCHES:</span>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 flex-1 md:max-w-3xl md:ml-4">
+<button class="cue-audition-btn group flex items-center justify-between px-3 py-2 rounded-lg bg-surface-elevated border border-border-subtle hover:border-primary-container/60 hover:bg-surface-elevated/90 transition-all text-left" data-cue="hook" data-freq="587.33" data-note="D5">
+<div>
+<span class="block text-text-primary group-hover:text-primary-container font-label-sm font-semibold transition-colors">01: Hook Cut</span>
+<span class="text-text-muted font-mono text-[11px]">D5 • 587Hz</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-text-muted group-hover:text-primary-container transition-colors" data-icon="play_arrow">play_arrow</span>
+</button>
+<button class="cue-audition-btn group flex items-center justify-between px-3 py-2 rounded-lg bg-surface-elevated border border-border-subtle hover:border-primary-container/60 hover:bg-surface-elevated/90 transition-all text-left" data-cue="broll" data-freq="739.99" data-note="F#5">
+<div>
+<span class="block text-text-primary group-hover:text-primary-container font-label-sm font-semibold transition-colors">02: B-Roll Velocity</span>
+<span class="text-text-muted font-mono text-[11px]">F#5 • 740Hz</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-text-muted group-hover:text-primary-container transition-colors" data-icon="play_arrow">play_arrow</span>
+</button>
+<button class="cue-audition-btn group flex items-center justify-between px-3 py-2 rounded-lg bg-surface-elevated border border-border-subtle hover:border-primary-container/60 hover:bg-surface-elevated/90 transition-all text-left" data-cue="kinetic" data-freq="880.00" data-note="A5">
+<div>
+<span class="block text-text-primary group-hover:text-primary-container font-label-sm font-semibold transition-colors">03: Kinetic Callouts</span>
+<span class="text-text-muted font-mono text-[11px]">A5 • 880Hz</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-text-muted group-hover:text-primary-container transition-colors" data-icon="play_arrow">play_arrow</span>
+</button>
+<button class="cue-audition-btn group flex items-center justify-between px-3 py-2 rounded-lg bg-surface-elevated border border-border-subtle hover:border-primary-container/60 hover:bg-surface-elevated/90 transition-all text-left" data-cue="sfx" data-freq="1174.66" data-note="D6">
+<div>
+<span class="block text-text-primary group-hover:text-primary-container font-label-sm font-semibold transition-colors">04: Sound Design FX</span>
+<span class="text-text-muted font-mono text-[11px]">D6 • 1175Hz</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-text-muted group-hover:text-primary-container transition-colors" data-icon="play_arrow">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Split Card Comparison Canvas -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+<!-- LEFT: RAW CAMERA LOG -->
+<div class="relative bg-surface-card rounded-xl border border-border-subtle p-6 flex flex-col justify-between overflow-hidden group">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<span class="px-2.5 py-1 rounded bg-error-container/20 border border-error/40 text-error font-label-sm text-label-sm tracking-wide">RAW INGEST</span>
+<span class="text-text-secondary font-body-sm text-body-sm">Unedited Timeline Cut</span>
+</div>
+<span class="material-symbols-outlined text-text-muted" data-icon="videocam_off">videocam_off</span>
+</div>
+<!-- Video Simulation Frame Raw -->
+<div class="relative aspect-video rounded-lg overflow-hidden bg-surface-base border border-border-subtle my-2">
+<img class="w-full h-full object-cover filter contrast-75 brightness-90 saturate-50" data-alt="A raw, washed-out flat LOG video profile footage of a male tech founder talking in an untreated boardroom studio with harsh fluorescent ceiling lighting and no cinematic depth of field, exhibiting low contrast and muted gray tones in cybernetic minimal setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo5SobLNunURZHUyQnUvIOONdlf1_gh08Ujb5JIihObG_D44wuoCMITFuZxs146gGaQkNy4v7ihStyQhVmlLvP8PmF-JvPgxvycuwBeRaXMKRxiwpPNUGJM9jLUH3VybSQCspTANdoUe6JjUzxI-GgZDxJvxdaExdbmpRLZ2biNIkue614osNISFz80eTUAGha-o1OfsJnsLYr8zr6zlZ81cAydzYAA4zdMsBYiuEu">
+<div class="absolute inset-0 bg-surface-base/30 flex items-center justify-center">
+<div class="px-4 py-2 rounded-lg bg-surface-card/90 backdrop-blur-md border border-border-subtle text-text-secondary text-body-sm font-body-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-text-muted" data-icon="tune">tune</span>
+                Flat Color Profile • Unprocessed Audio
+              </div>
+</div>
+<div class="absolute bottom-3 left-3 px-2 py-0.5 rounded bg-surface-base/80 text-text-muted font-label-sm text-label-sm font-mono">
+              REC709_OFF • NO_LUT • PEAK: -0.2dB REVERB
+            </div>
+</div>
+<!-- Defect Diagnostics List -->
+<div class="mt-6 space-y-3">
+<div class="flex items-start gap-3 p-3 rounded-lg bg-surface-elevated/40 border border-border-subtle">
+<span class="material-symbols-outlined text-error text-[18px] mt-0.5" data-icon="cancel">cancel</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-text-primary text-[15px]">Flat Log Camera Profile</h4>
+<p class="text-text-secondary font-body-sm text-body-sm">Muted color saturation causing high viewer drop-off in first 5 seconds.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 rounded-lg bg-surface-elevated/40 border border-border-subtle">
+<span class="material-symbols-outlined text-error text-[18px] mt-0.5" data-icon="volume_off">volume_off</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-text-primary text-[15px]">Untreated Room Reverb</h4>
+<p class="text-text-secondary font-body-sm text-body-sm">Hollow microphone echo with distracting pauses and zero low-end vocal weight.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 rounded-lg bg-surface-elevated/40 border border-border-subtle">
+<span class="material-symbols-outlined text-error text-[18px] mt-0.5" data-icon="timer_off">timer_off</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-text-primary text-[15px]">Zero Kinetic Sound Design</h4>
+<p class="text-text-secondary font-body-sm text-body-sm">No wooshes, risers, or pacing interrupts, resulting in flat user engagement.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT: PATHFINDER MASTER -->
+<div class="relative bg-surface-card rounded-xl border border-primary-container/40 p-6 flex flex-col justify-between shadow-[0_0_30px_rgba(0,242,254,0.1)] group">
+<div class="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-primary-container to-transparent"></div>
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<span class="px-2.5 py-1 rounded bg-primary-container/20 border border-primary-container text-primary-container font-label-sm text-label-sm tracking-wide flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+                PATHFINDER MASTER
+              </span>
+<span class="text-text-secondary font-body-sm text-body-sm">Algorithmic Cinema Grade</span>
+</div>
+<span class="material-symbols-outlined text-primary-container" data-icon="verified">verified</span>
+</div>
+<!-- Video Simulation Frame Mastered -->
+<div class="relative aspect-video rounded-lg overflow-hidden bg-surface-base border border-primary-container/40 my-2 group-hover:shadow-[0_0_24px_rgba(0,242,254,0.2)] transition-shadow">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-contrast mastered documentary frame featuring an authoritative founder backlit with electric cyan rim lights and deep navy cinematic shadows, showcasing sharp 4K clarity, rich color grading, and holographic data overlay graphics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYTcgtjxOE5nZja5x4Mk1koEo_okco8Vp79qrbWnoraP53QOptZCPGemBBFg8CRQfFxtr1D_CCImQfBgEr6FBI-sP_DgXruqI52o6LIpOq-6cA4gxQrdijVUYyvvi35WTuy93UDoiYu3jiU-_y3bdu5tz36q4SXWvFTuR_wEzoqhM3yt6qamaAA_VBgilW9ZS1GMy-SImmyuqQ6GSAxZpfJN4ZugXVu3IvansOb06g">
+<!-- Dynamic Overlay HUD -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-base/80 via-transparent to-transparent flex flex-col justify-between p-4">
+<div class="flex justify-between items-center">
+<span class="px-2 py-0.5 rounded bg-surface-base/80 backdrop-blur-md border border-primary-container/30 text-primary-container font-label-sm text-label-sm">
+                  4K PRORES 422 • FILM LUT APPLIED
+                </span>
+<span class="px-2 py-0.5 rounded bg-accent-emerald/20 text-accent-emerald font-label-sm text-label-sm">
+                  LUFS -14 BROADCAST MASTERED
+                </span>
+</div>
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-elevated/90 backdrop-blur-md border border-primary-container/40 text-primary-container font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]" data-icon="graphic_eq">graphic_eq</span>
+                  Multi-Band Mastered Audio + Kinetic Subtitles
+                </div>
+<button class="w-10 h-10 rounded-full bg-primary-container text-surface-base flex items-center justify-center shadow-[0_0_16px_rgba(0,242,254,0.6)] cursor-pointer hover:scale-110 active:scale-95 transition-transform" id="master-hero-play-chime" title="Audition Master Chime">
+<span class="material-symbols-outlined text-[20px]" data-icon="play_arrow" data-weight="fill">play_arrow</span>
+</button>
+</div>
+</div>
+</div>
+<!-- High-End Upgrades List -->
+<div class="mt-6 space-y-3">
+<div class="flex items-start gap-3 p-3 rounded-lg bg-surface-elevated/70 border border-primary-container/20">
+<span class="material-symbols-outlined text-primary-container text-[18px] mt-0.5" data-icon="palette">palette</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-text-primary text-[15px]">Hollywood Filmic Grade &amp; Custom LUT</h4>
+<p class="text-text-secondary font-body-sm text-body-sm">Enhanced skin-tone separation with electric cyan rim-light accents for cinematic prestige.</p>
+</div>
+</div>
+<div class="flex items-start justify-between gap-3 p-3 rounded-lg bg-surface-elevated/70 border border-primary-container/30 hover:border-primary-container/60 transition-colors">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container text-[18px] mt-0.5" data-icon="graphic_eq">graphic_eq</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-text-primary text-[15px]">Izotope Audio Repair + Multi-Band Compression</h4>
+<p class="text-text-secondary font-body-sm text-body-sm">Total room de-reverberation paired with radio-broadcast voice presence and bass warmth.</p>
+</div>
+</div>
+<button class="cue-audition-btn shrink-0 self-center px-2.5 py-1 rounded bg-primary-container/15 hover:bg-primary-container/30 border border-primary-container/40 text-primary-container text-[11px] font-label-sm flex items-center gap-1 transition-colors" data-cue="izotope" data-freq="880" data-note="A5" title="Audition Mastering Chime">
+<span class="material-symbols-outlined text-[13px]" data-icon="volume_up">volume_up</span>
+<span class="">Audition</span>
+</button>
+</div>
+<div class="flex items-start gap-3 p-3 rounded-lg bg-surface-elevated/70 border border-primary-container/20">
+<span class="material-symbols-outlined text-primary-container text-[18px] mt-0.5" data-icon="motion_photos_on">motion_photos_on</span>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-text-primary text-[15px]">3D Motion Graphics &amp; SFX Atmosphere</h4>
+<p class="text-text-secondary font-body-sm text-body-sm">Pattern interrupts every 4 to 6 seconds using custom whooshes, risers, and kinetic titles.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Feature Badges Cluster -->
+<div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+<span class="px-4 py-2 rounded-full bg-surface-card border border-border-subtle hover:border-primary-container/50 text-text-primary font-label-md text-label-md flex items-center gap-2 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-primary-container text-[16px]" data-icon="content_cut">content_cut</span>
+          Pacing Cuts: 0.8s Breath Removal
+        </span>
+<button class="cue-audition-btn px-4 py-2 rounded-full bg-surface-card border border-border-subtle hover:border-primary-container text-text-primary font-label-md text-label-md flex items-center gap-2 transition-all" data-cue="sfx-badge" data-freq="1174.66" data-note="D6">
+<span class="material-symbols-outlined text-primary-container text-[16px]" data-icon="surround_sound">surround_sound</span>
+          Custom SFX Architecture
+          <span class="material-symbols-outlined text-primary-container text-[13px]" data-icon="play_circle">play_circle</span>
+</button>
+<span class="px-4 py-2 rounded-full bg-surface-card border border-border-subtle hover:border-primary-container/50 text-text-primary font-label-md text-label-md flex items-center gap-2 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-primary-container text-[16px]" data-icon="color_lens">color_lens</span>
+          Dual-Pass Color LUT Mapping
+        </span>
+<span class="px-4 py-2 rounded-full bg-surface-card border border-border-subtle hover:border-primary-container/50 text-text-primary font-label-md text-label-md flex items-center gap-2 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-primary-container text-[16px]" data-icon="subtitles">subtitles</span>
+          Kinetic Dynamic Captions
+        </span>
+</div>
+</section>
+<!-- SECTION 4: Retention Curve Analytics Teardown -->
+<section class="max-w-[1440px] mx-auto px-6 lg:px-14 py-16">
+<div class="bg-surface-card rounded-2xl border border-border-subtle p-8 lg:p-12 relative overflow-hidden">
+<div class="max-w-3xl mb-10">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/10 border border-primary-container/20 text-primary-container font-label-md text-label-md mb-3">
+<span class="material-symbols-outlined text-[14px]" data-icon="insights">insights</span>
+            ALGORITHMIC RETENTION MATRIX
+          </div>
+<h2 class="text-headline-xl-mobile md:text-headline-xl font-headline-xl text-text-primary">
+            Retention Curve Analytics Teardown
+          </h2>
+<p class="mt-3 text-text-secondary font-body-md text-body-md">
+            Examining how our strategic 3-second hook mechanics and timed visual pattern interrupts eliminate the typical YouTube viewer drop-off valley.
+          </p>
+</div>
+<!-- Retention Curve Visual Graph -->
+<div class="relative bg-surface-elevated rounded-xl border border-border-subtle p-6 lg:p-8">
+<!-- Graph Header Legend -->
+<div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-border-subtle">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary-container shadow-[0_0_8px_rgba(0,242,254,0.8)]"></span>
+<span class="font-label-md text-label-md text-text-primary">JJ Pathfinder Optimized Curve (68.4% at 30s)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-text-muted"></span>
+<span class="font-label-md text-label-md text-text-muted">Standard YouTube Drop-off Curve (32.1% at 30s)</span>
+</div>
+</div>
+<div class="px-3 py-1 rounded bg-surface-card border border-border-subtle text-primary-container font-label-sm text-label-sm">
+              SAMPLE: 10 EPISODES • 4.2M SESSIONS
+            </div>
+</div>
+<!-- SVG Data Graph Canvas -->
+<div class="relative w-full h-72 sm:h-80 my-8">
+<svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 1000 300">
+<!-- Y-Axis Grid Lines -->
+<line stroke="rgba(255,255,255,0.05)" stroke-dasharray="4" x1="0" x2="1000" y1="30" y2="30"></line>
+<line stroke="rgba(255,255,255,0.05)" stroke-dasharray="4" x1="0" x2="1000" y1="90" y2="90"></line>
+<line stroke="rgba(255,255,255,0.05)" stroke-dasharray="4" x1="0" x2="1000" y1="150" y2="150"></line>
+<line stroke="rgba(255,255,255,0.05)" stroke-dasharray="4" x1="0" x2="1000" y1="210" y2="210"></line>
+<line stroke="rgba(255,255,255,0.08)" x1="0" x2="1000" y1="270" y2="270"></line>
+<!-- Baseline Curve: Steep Fall Off (Grey) -->
+<path d="M 0,40 Q 50,180 150,220 T 350,245 T 600,260 T 1000,275" fill="none" opacity="0.65" stroke="#64748B" stroke-dasharray="6 4" stroke-width="2.5"></path>
+<!-- Pathfinder Optimized Glow Area -->
+<defs>
+<linearGradient id="cyanGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#00f2fe" stop-opacity="0.35"></stop>
+<stop offset="100%" stop-color="#00f2fe" stop-opacity="0.0"></stop>
+</linearGradient>
+</defs>
+<path d="M 0,35 C 80,45 120,68 180,72 C 220,70 240,55 270,68 C 360,78 440,95 480,78 C 550,85 700,98 740,85 C 840,110 920,130 1000,145 L 1000,270 L 0,270 Z" fill="url(#cyanGradient)"></path>
+<!-- Pathfinder Optimized Line (Electric Cyan) -->
+<path d="M 0,35 C 80,45 120,68 180,72 C 220,70 240,55 270,68 C 360,78 440,95 480,78 C 550,85 700,98 740,85 C 840,110 920,130 1000,145" fill="none" filter="drop-shadow(0px 0px 8px rgba(0,242,254,0.6))" stroke="#00f2fe" stroke-width="3.5"></path>
+<!-- Interactive Re-Hook Nodes (Spikes) -->
+<!-- Hook 1 at 0:45 -->
+<circle class="cursor-pointer hover:r-7 transition-all" cx="250" cy="62" fill="#07090E" onclick="window.playChime &amp;&amp; window.playChime(587.33, 'D5 (Re-Hook #1)')" r="5" stroke="#00f2fe" stroke-width="3"></circle>
+<!-- Hook 2 at 2:15 -->
+<circle class="cursor-pointer hover:r-7 transition-all" cx="480" cy="78" fill="#07090E" onclick="window.playChime &amp;&amp; window.playChime(739.99, 'F#5 (Re-Hook #2)')" r="5" stroke="#00f2fe" stroke-width="3"></circle>
+<!-- Hook 3 at 5:30 -->
+<circle class="cursor-pointer hover:r-7 transition-all" cx="740" cy="85" fill="#07090E" onclick="window.playChime &amp;&amp; window.playChime(880.00, 'A5 (Re-Hook #3)')" r="5" stroke="#00f2fe" stroke-width="3"></circle>
+</svg>
+<!-- Graph Visual Marker Annotations -->
+<div class="absolute top-2 left-2 text-text-muted font-label-sm text-label-sm">100%</div>
+<div class="absolute top-[30%] left-2 text-text-muted font-label-sm text-label-sm">75%</div>
+<div class="absolute top-[60%] left-2 text-text-muted font-label-sm text-label-sm">50%</div>
+<div class="absolute bottom-2 left-2 text-text-muted font-label-sm text-label-sm">25%</div>
+<!-- Callout: Hook 1 -->
+<div class="hidden sm:block absolute top-[10%] left-[23%] -translate-x-1/2 p-2 rounded-lg bg-surface-card/95 border border-primary-container/40 text-center shadow-lg backdrop-blur-md cursor-pointer hover:border-primary-container transition-colors" onclick="window.playChime &amp;&amp; window.playChime(587.33, 'D5 (0:45)')">
+<span class="block text-primary-container font-label-sm text-label-sm font-bold">RE-HOOK #1 (0:45)</span>
+<span class="text-text-secondary text-[11px]">3D Architecture Teardown</span>
+</div>
+<!-- Callout: Hook 2 -->
+<div class="hidden sm:block absolute top-[16%] left-[48%] -translate-x-1/2 p-2 rounded-lg bg-surface-card/95 border border-primary-container/40 text-center shadow-lg backdrop-blur-md cursor-pointer hover:border-primary-container transition-colors" onclick="window.playChime &amp;&amp; window.playChime(739.99, 'F#5 (2:15)')">
+<span class="block text-primary-container font-label-sm text-label-sm font-bold">RE-HOOK #2 (2:15)</span>
+<span class="text-text-secondary text-[11px]">Sound Effect Flash Shift</span>
+</div>
+<!-- Callout: Hook 3 -->
+<div class="hidden sm:block absolute top-[18%] left-[74%] -translate-x-1/2 p-2 rounded-lg bg-surface-card/95 border border-primary-container/40 text-center shadow-lg backdrop-blur-md cursor-pointer hover:border-primary-container transition-colors" onclick="window.playChime &amp;&amp; window.playChime(880.00, 'A5 (5:30)')">
+<span class="block text-primary-container font-label-sm text-label-sm font-bold">RE-HOOK #3 (5:30)</span>
+<span class="text-text-secondary text-[11px]">Micro-Interview Cut</span>
+</div>
+</div>
+<!-- Timeline X-Axis Time Markers -->
+<div class="grid grid-cols-5 text-center text-text-muted font-label-sm text-label-sm border-t border-border-subtle pt-3">
+<span class="">0:00 (Hook)</span>
+<span class="">0:45 (B-Roll Burst)</span>
+<span class="">2:15 (Pattern Interrupt)</span>
+<span class="">5:30 (Data Reveal)</span>
+<span class="">10:00 (Climax &amp; CTA)</span>
+</div>
+</div>
+<!-- 3 Architecture Pillars -->
+<div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="p-5 rounded-xl bg-surface-elevated/50 border border-border-subtle">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-7 h-7 rounded-md bg-primary-container/10 border border-primary-container/30 text-primary-container flex items-center justify-center font-bold text-xs">01</span>
+<h3 class="font-headline-sm text-headline-sm text-text-primary">3-Second Hook Architecture</h3>
+</div>
+<p class="text-text-secondary font-body-sm text-body-sm">
+              We eliminate traditional logos and intros. The first 3 seconds combine high-velocity statements, sonic risers, and kinetic titles.
+            </p>
+</div>
+<div class="p-5 rounded-xl bg-surface-elevated/50 border border-border-subtle">
+<div class="flex items-center gap-3 mb-2">
+<span class="w-7 h-7 rounded-md bg-primary-container/10 border border-primary-container/30 text-primary-container flex items-center justify-center font-bold text-xs">02</span>
+<h3 class="font-headline-sm text-headline-sm text-text-primary">Dynamic Pattern Interrupts</h3>
+</div>
+<p class="text-text-secondary font-body-sm text-body-sm">
+              Viewers disengage when a visual frame sits static for &gt;4 seconds. We introduce micro-zooms, 3D graphics, and light transitions.
+            </p>
+</div>
+<div class="p-5 rounded-xl bg-surface-elevated/50 border border-border-subtle flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-3">
+<span class="w-7 h-7 rounded-md bg-primary-container/10 border border-primary-container/30 text-primary-container flex items-center justify-center font-bold text-xs">03</span>
+<h3 class="font-headline-sm text-headline-sm text-text-primary">Sonic Kinetic Pacing</h3>
+</div>
+<button class="cue-audition-btn px-2 py-0.5 rounded bg-primary-container/15 hover:bg-primary-container/30 border border-primary-container/40 text-primary-container text-[11px] font-label-sm flex items-center gap-1 transition-colors" data-cue="sonic" data-freq="1174.66" data-note="D6" title="Audition Mastering Chime">
+<span class="material-symbols-outlined text-[13px]" data-icon="volume_up">volume_up</span>
+<span class="">Audition</span>
+</button>
+</div>
+<p class="text-text-secondary font-body-sm text-body-sm">
+    Vocal frequencies are sculpted for hypnotic clarity. Rhythmic background sweeps create subconscious momentum toward the CTA.
+  </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: Production Architecture & Delivery Specs -->
+<section class="max-w-[1440px] mx-auto px-6 lg:px-14 py-16" id="services">
+<div class="max-w-3xl mb-12">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container/10 border border-primary-container/20 text-primary-container font-label-md text-label-md mb-3">
+<span class="material-symbols-outlined text-[14px]" data-icon="terminal">terminal</span>
+          ENGINEERING STANDARDS
+        </div>
+<h2 class="text-headline-xl-mobile md:text-headline-xl font-headline-xl text-text-primary">
+          Production Architecture &amp; Delivery Specs
+        </h2>
+<p class="mt-2 text-text-secondary font-body-md text-body-md">
+          Zero latency. Broadcast precision. Institutional-grade file management across every episode and short-form render.
+        </p>
+</div>
+<!-- Specs Card Grid (4 Pillars) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Software Stack -->
+<div class="p-6 rounded-xl bg-surface-card border border-border-subtle hover:border-primary-container/40 transition-all duration-300">
+<div class="w-10 h-10 rounded-lg bg-surface-elevated border border-primary-container/30 flex items-center justify-center text-primary-container mb-5 shadow-[0_0_12px_rgba(0,242,254,0.2)]">
+<span class="material-symbols-outlined text-[20px]" data-icon="layers">layers</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary mb-2">Software Stack</h3>
+<p class="text-text-secondary font-body-sm text-body-sm mb-4">Post-production suite engineered for hyper-fluid collaborative velocity.</p>
+<ul class="space-y-2 font-label-sm text-label-sm text-text-muted">
+<li class="flex items-center gap-2 text-text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Adobe Premiere Pro 2024</li>
+<li class="flex items-center gap-2 text-text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> After Effects Motion Rigging</li>
+<li class="flex items-center gap-2 text-text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> DaVinci Resolve Studio (Color)</li>
+<li class="flex items-center gap-2 text-text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Frame.io Client Review Hub</li>
+</ul>
+</div>
+<!-- Resolution & Codec -->
+<div class="p-6 rounded-xl bg-surface-card border border-border-subtle hover:border-primary-container/40 transition-all duration-300">
+<div class="w-10 h-10 rounded-lg bg-surface-elevated border border-primary-container/30 flex items-center justify-center text-primary-container mb-5 shadow-[0_0_12px_rgba(0,242,254,0.2)]">
+<span class="material-symbols-outlined text-[20px]" data-icon="high_quality">high_quality</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary mb-2">Resolution &amp; Codec</h3>
+<p class="text-text-secondary font-body-sm text-body-sm mb-4">Mastering in uncompressed containers for algorithmic clarity retention.</p>
+<ul class="space-y-2 font-label-sm text-label-sm text-text-muted">
+<li class="flex items-center gap-2 text-text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> 4K UHD 3840x2160 Master</li>
+<li class="flex items-center gap-2 text-text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Apple ProRes 422 HQ &amp; Rec.709</li>
+<li class="flex items-center gap-2 text-text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> 1080x1920 60fps Shorts/Reels</li>
+<li class="flex items-center gap-2 text-text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> High-Bitrate H.265 Master Vault</li>
+</ul>
+</div>
+<!-- Audio Mastering -->
+<div class="p-6 rounded-xl bg-surface-card border border-border-subtle hover:border-primary-container/40 transition-all duration-300">
+<div class="w-10 h-10 rounded-lg bg-surface-elevated border border-primary-container/30 flex items-center justify-center text-primary-container mb-5 shadow-[0_0_12px_rgba(0,242,254,0.2)]">
+<span class="material-symbols-outlined text-[20px]" data-icon="headphones">headphones</span>
+</div>
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline-sm text-headline-sm text-text-primary">Audio Mastering</h3>
+<button class="cue-audition-btn p-1 rounded hover:bg-primary-container/20 text-primary-container transition-colors" data-cue="mastering-spec" data-freq="880" data-note="A5" title="Audition Mastering Chime">
+<span class="material-symbols-outlined text-[18px]" data-icon="volume_up">volume_up</span>
+</button>
+</div>
+<p class="text-text-secondary font-body-sm text-body-sm mb-4">Acoustic isolation for headphone users and compressed mobile speakers.</p>
+<ul class="space-y-2 font-label-sm text-label-sm text-text-muted">
+<li class="flex items-center gap-2 text-text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> LUFS -14 Integrated Standard</li>
+<li class="flex items-center gap-2 text-text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Izotope RX Spectral Repair</li>
+<li class="flex items-center gap-2 text-text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> FabFilter Pro-MB Dynamics</li>
+<li class="flex items-center gap-2 text-text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Stereo Width Acoustic Shaping</li>
+</ul>
+</div>
+<!-- Turnaround & SLA -->
+<div class="p-6 rounded-xl bg-surface-card border border-border-subtle hover:border-primary-container/40 transition-all duration-300">
+<div class="w-10 h-10 rounded-lg bg-surface-elevated border border-primary-container/30 flex items-center justify-center text-primary-container mb-5 shadow-[0_0_12px_rgba(0,242,254,0.2)]">
+<span class="material-symbols-outlined text-[20px]" data-icon="schedule">schedule</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary mb-2">Turnaround &amp; SLA</h3>
+<p class="text-text-secondary font-body-sm text-body-sm mb-4">Military precision cadence without creative compromise or delays.</p>
+<ul class="space-y-2 font-label-sm text-label-sm text-text-muted">
+<li class="flex items-center gap-2 text-text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Strict 48h Cut-to-Review SLA</li>
+<li class="flex items-center gap-2 text-text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Unlimited Frame.io Revisions</li>
+<li class="flex items-center gap-2 text-text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Dedicated Slack War Room</li>
+<li class="flex items-center gap-2 text-text-secondary"><span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span> Automated Cloud Sync Archiving</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- SECTION 6: Client Testimonial & Founder Endorsement -->
+<section class="max-w-[1440px] mx-auto px-6 lg:px-14 py-16" id="about">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<!-- Client Testimonial Card (8 Cols) - PLACEHOLDER: the Stitch draft had a fabricated testimonial here (fake name + revenue + AI photo). Removed 2026-11-05. Real client feedback to be added once Ahtesham provides it. -->
+<div class="lg:col-span-7 bg-surface-card rounded-2xl border border-dashed border-primary-container/40 p-8 lg:p-12 relative">
+<div class="flex items-center gap-1 text-primary-container mb-6">
+<span class="px-2 py-0.5 rounded bg-primary-container/10 border border-primary-container/20 text-primary-container font-label-sm text-label-sm">TESTIMONIAL NEEDED</span>
+</div>
+<blockquote class="text-body-lg lg:text-[22px] lg:leading-[34px] font-body-lg text-text-secondary italic">
+            Real client feedback will appear here once Ahtesham shares it.
+          </blockquote>
+<p class="text-text-muted font-body-sm text-body-sm mt-6">No testimonial is shown until a real client provides one.</p>
+</div>
+<!-- Founder Endorsement Note (5 Cols) -->
+<div class="lg:col-span-5 bg-gradient-to-b from-surface-elevated to-surface-card rounded-2xl border border-primary-container/30 p-8 relative overflow-hidden">
+<div class="absolute -right-12 -bottom-12 w-48 h-48 bg-primary-container/10 blur-3xl rounded-full"></div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container shadow-[0_0_16px_rgba(0,242,254,0.4)]">
+<img class="w-full h-full object-cover" data-alt="A striking portrait of agency founder Ahtesham Shahid in a high-tech video production color grading suite, surrounded by glowing editing monitors displaying video timelines and cybernetic blue ambient reflections." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbRp4dCnTAUZLTC93LHG_F_6xzRElLWxC8XYfIsS2rjQRtWh24fFE8sR9N5Lmkrifnvz_OYs8ou56XmrHAz35Kj1JNQVKqsVyatqMNlqvXrgBwZLxY8ORE48yVdnbrKOCapSi2EMg0zT1C1ZN43UyH_PHJPpoVNzWc1SigF5IjGPc0YgOxdzSro-cLsTHuB9b-HYUjbY_2tylOau8h742mwIC252Gu7A0WXDPdeNfJ">
+</div>
+<div>
+<span class="px-2 py-0.5 rounded bg-primary-container/15 text-primary-container font-label-sm text-label-sm font-bold">DIRECT FOUNDER NOTE</span>
+<h4 class="font-headline-sm text-headline-sm text-text-primary mt-1">Ahtesham Shahid</h4>
+<p class="text-text-secondary font-body-sm text-body-sm">Founder &amp; Lead Video Architect</p>
+</div>
+</div>
+<p class="text-text-secondary font-body-md text-body-md leading-relaxed">
+            "Virality isn't luck; it's an engineering problem. When we take on a channel, we strip away every redundant second that gives a viewer an excuse to scroll away. Precision video editing isn't just about pretty visuals; it's about holding algorithmic attention hostage until the viewer converts."
+          </p>
+<div class="mt-6 pt-6 border-t border-border-subtle flex flex-col gap-2">
+<a class="inline-flex items-center gap-2 text-primary-container hover:underline font-label-md text-label-md" href="https://wa.me/923037779335" target="_blank">
+<span class="material-symbols-outlined text-[18px]" data-icon="chat">chat</span>
+              Direct Founder Line: +92 303 777 9335
+            </a>
+<span class="text-text-muted font-body-sm text-body-sm flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-accent-emerald"></span> Available for high-volume creator &amp; B2B retainers
+            </span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 7: Next Project CTA Section -->
+<section class="max-w-[1440px] mx-auto px-6 lg:px-14 py-20" id="contact">
+<div class="relative rounded-3xl bg-surface-card border border-primary-container/40 p-10 lg:p-16 text-center overflow-hidden shadow-[0_0_50px_rgba(0,242,254,0.15)]">
+<!-- Ambient Grid & Glow -->
+<div class="absolute inset-0 hud-grid opacity-50"></div>
+<div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary-container/20 blur-[100px] rounded-full pointer-events-none"></div>
+<div class="relative max-w-3xl mx-auto space-y-6">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/30 text-primary-container font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]" data-icon="rocket_launch">rocket_launch</span>
+            READY FOR ALGORITHMIC DOMINANCE?
+          </div>
+<h2 class="text-display-hero-mobile md:text-headline-xl font-display-hero font-extrabold text-text-primary tracking-tight">
+            Ready to Re-Engineer Your Channel Retention?
+          </h2>
+<p class="text-body-lg font-body-lg text-text-secondary max-w-xl mx-auto">
+            Book a complimentary 15-minute retention teardown. We'll analyze your worst-performing video and provide a complete re-cut roadmap.
+          </p>
+<!-- Action Buttons -->
+<div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+<a class="transition-route-trigger w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-primary-container to-primary-fixed-dim text-surface-base font-label-lg text-label-lg font-bold shadow-[0_4px_25px_rgba(0,242,254,0.4)] hover:scale-105 active:scale-95 transition-all" href="#contact">
+<span class="material-symbols-outlined text-[20px]" data-icon="calendar_month">calendar_month</span>
+              Book 15-Min Discovery Audit
+            </a>
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-surface-elevated border border-primary-container/40 text-primary-container font-label-lg text-label-lg font-semibold hover:bg-primary-container/10 hover:border-primary-container transition-all" href="https://wa.me/923037779335" target="_blank">
+<span class="material-symbols-outlined text-[20px]" data-icon="call">call</span>
+              WhatsApp Founder Direct (+92 303 777 9335)
+            </a>
+</div>
+<!-- Trust Badges -->
+<div class="pt-6 flex flex-wrap items-center justify-center gap-6 text-text-muted font-label-sm text-label-sm">
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-accent-emerald text-[16px]" data-icon="check_circle">check_circle</span> 48-Hour Turnaround Guarantee</span>
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-accent-emerald text-[16px]" data-icon="check_circle">check_circle</span> Unlimited Iterative Revisions</span>
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-accent-emerald text-[16px]" data-icon="check_circle">check_circle</span> Direct Founder Project Management</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- SECTION 8: Footer (Shared Component JSON Source of Truth) -->
+<footer class="w-full bg-surface-base dark:bg-surface-base border-t border-border-subtle dark:border-border-subtle">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-14 py-16 flex flex-col md:flex-row justify-between items-center gap-8">
+<!-- Footer Brand & Bio -->
+<div class="space-y-3 text-center md:text-left">
+<a class="inline-flex items-center gap-3 group transition-route-trigger text-headline-lg font-headline-lg font-extrabold text-text-primary dark:text-text-primary tracking-tight" href="#"><div class="w-8 h-8 rounded-lg bg-surface-elevated border border-primary-container/40 flex items-center justify-center shadow-[0_0_12px_rgba(0,242,254,0.3)] group-hover:scale-105 group-hover:border-primary-container transition-all duration-200"><svg class="w-5 h-5 text-primary-container drop-shadow-[0_0_6px_rgba(0,242,254,0.6)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5v9a3 3 0 0 1-3 3H4"></path><path d="M15 5v11a3.5 3.5 0 0 1-3.5 3.5H10"></path></svg></div><span class="">JJ PATHFINDER</span></a>
+<p class="text-body-sm font-body-sm text-text-muted dark:text-text-muted max-w-md">
+          © 2026 JJ Pathfinder Creative Agency. All rights reserved. Precision video &amp; algorithmic expansion.
+        </p>
+</div>
+<!-- Footer Navigation Links verbatim from JSON -->
+<div class="flex flex-wrap justify-center items-center gap-6">
+<a class="transition-route-trigger text-text-muted dark:text-text-muted hover:text-text-secondary dark:hover:text-text-secondary transition-colors duration-200 text-label-md font-label-md" href="#work">Portfolio</a>
+<a class="transition-route-trigger text-text-muted dark:text-text-muted hover:text-text-secondary dark:hover:text-text-secondary transition-colors duration-200 text-label-md font-label-md" href="#services">Services</a>
+<a class="transition-route-trigger text-primary-container dark:text-primary-container font-medium text-label-md font-label-md" href="#metrics">Case Studies</a>
+<a class="transition-route-trigger text-text-muted dark:text-text-muted hover:text-text-secondary dark:hover:text-text-secondary transition-colors duration-200 text-label-md font-label-md" href="#about">Founder Dossier</a>
+
+
+</div>
+</div>
+</footer>
+<!-- Procedural Web Audio API Synthesizer Script & Cinematic Desktop Page Transition Orchestrator -->
+<script>
+  (function () {
+    // Audio Context state
+    let audioCtx = null;
+    let sfxEnabled = true;
+    let currentVolDb = -3;
+    let currentTailDuration = 0.7; // seconds
+
+    // Calibrated Gain scaling
+    const volumeGainMap = {
+      '-6': 0.25,
+      '-3': 0.50,
+      '0': 0.85
+    };
+
+    function initAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          audioCtx = new AudioContextClass();
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    // Procedural Dual-Oscillator Synthesis
+    window.playChime = function (freq = 587.33, noteName = 'D5 (587Hz)') {
+      if (!sfxEnabled) return;
+      try {
+        const ctx = initAudioContext();
+        if (!ctx) return;
+
+        const now = ctx.currentTime;
+        const targetGain = volumeGainMap[String(currentVolDb)] || 0.50;
+        const tail = currentTailDuration || 0.7;
+
+        // Master Gain Stage for Anti-clipping
+        const masterGain = ctx.createGain();
+        masterGain.gain.setValueAtTime(0.0001, now);
+        masterGain.gain.linearRampToValueAtTime(targetGain, now + 0.015); // Fast, soft attack
+        masterGain.gain.exponentialRampToValueAtTime(0.0001, now + tail); // Exponential decay tail
+        masterGain.connect(ctx.destination);
+
+        // Oscillator 1: Pure Sine (Fundamental warmth)
+        const osc1 = ctx.createOscillator();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(freq, now);
+
+        // Subtle micro-pitch shimmer
+        osc1.frequency.exponentialRampToValueAtTime(freq * 1.002, now + tail * 0.5);
+
+        // Oscillator 2: Triangle (Harmonic sparkle)
+        const osc2 = ctx.createOscillator();
+        osc2.type = 'triangle';
+        osc2.frequency.setValueAtTime(freq * 1.0005, now);
+
+        // Balance oscillator sub-gains
+        const gain1 = ctx.createGain();
+        gain1.gain.value = 0.65;
+        const gain2 = ctx.createGain();
+        gain2.gain.value = 0.35;
+
+        osc1.connect(gain1);
+        osc2.connect(gain2);
+        gain1.connect(masterGain);
+        gain2.connect(masterGain);
+
+        osc1.start(now);
+        osc2.start(now);
+
+        osc1.stop(now + tail + 0.05);
+        osc2.stop(now + tail + 0.05);
+
+        // Update UI Harmonic Note readout
+        updateNoteBadge(noteName);
+      } catch (err) {
+        console.warn('Web Audio playback error:', err);
+      }
+    };
+
+    function updateNoteBadge(noteText) {
+      const badge = document.getElementById('harmonic-note-text');
+      const container = document.getElementById('harmonic-note-display');
+      if (badge) {
+        badge.textContent = noteText.startsWith('CHIME:') ? noteText : `CHIME: ${noteText}`;
+      }
+      if (container) {
+        container.classList.remove('border-border-subtle');
+        container.classList.add('border-primary-container', 'shadow-[0_0_15px_rgba(0,242,254,0.4)]');
+        setTimeout(() => {
+          container.classList.remove('border-primary-container', 'shadow-[0_0_15px_rgba(0,242,254,0.4)]');
+          container.classList.add('border-border-subtle');
+        }, 400);
+      }
+    }
+
+    // Bind SFX Master Toggle
+    const masterToggleBtn = document.getElementById('sfx-master-toggle');
+    const toggleIndicator = document.getElementById('sfx-toggle-indicator');
+    const toggleLabel = document.getElementById('sfx-toggle-label');
+
+    if (masterToggleBtn) {
+      masterToggleBtn.addEventListener('click', () => {
+        sfxEnabled = !sfxEnabled;
+        if (sfxEnabled) {
+          masterToggleBtn.className = "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-container/15 border border-primary-container text-primary-container font-label-md text-label-md transition-all duration-200 hover:bg-primary-container/25 shadow-[0_0_12px_rgba(0,242,254,0.3)]";
+          toggleIndicator.className = "w-2 h-2 rounded-full bg-primary-container animate-pulse";
+          toggleLabel.textContent = "SFX: ON";
+          window.playChime(587.33, 'D5 (587Hz)');
+        } else {
+          masterToggleBtn.className = "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-elevated border border-border-subtle text-text-muted font-label-md text-label-md transition-all duration-200 hover:text-text-secondary";
+          toggleIndicator.className = "w-2 h-2 rounded-full bg-text-muted";
+          toggleLabel.textContent = "SFX: OFF";
+          updateNoteBadge("MUTED");
+        }
+      });
+    }
+
+    // Bind Volume Selector Chips
+    const volGroup = document.getElementById('vol-selector-group');
+    if (volGroup) {
+      const volButtons = volGroup.querySelectorAll('button[data-vol]');
+      volButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const val = btn.getAttribute('data-vol');
+          currentVolDb = parseInt(val, 10);
+          volButtons.forEach(b => {
+            b.className = "px-2.5 py-1 rounded text-label-sm text-text-secondary hover:text-text-primary transition-all duration-150";
+          });
+          btn.className = "px-2.5 py-1 rounded text-label-sm bg-primary-container text-surface-base font-bold shadow-[0_0_10px_rgba(0,242,254,0.4)] transition-all duration-150";
+          window.playChime(587.33, `D5 • Vol ${val}dB`);
+        });
+      });
+    }
+
+    // Bind Tail Duration Selector Chips
+    const tailGroup = document.getElementById('tail-selector-group');
+    if (tailGroup) {
+      const tailButtons = tailGroup.querySelectorAll('button[data-tail]');
+      tailButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const val = parseFloat(btn.getAttribute('data-tail'));
+          currentTailDuration = val;
+          tailButtons.forEach(b => {
+            b.className = "px-2.5 py-1 rounded text-label-sm text-text-secondary hover:text-text-primary transition-all duration-150";
+          });
+          btn.className = "px-2.5 py-1 rounded text-label-sm bg-primary-container text-surface-base font-bold shadow-[0_0_10px_rgba(0,242,254,0.4)] transition-all duration-150";
+          window.playChime(739.99, `F#5 • Tail ${val}s`);
+        });
+      });
+    }
+
+    // Bind all Cue Audition Buttons
+    const cueButtons = document.querySelectorAll('.cue-audition-btn');
+    cueButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const freq = parseFloat(btn.getAttribute('data-freq')) || 587.33;
+        const note = btn.getAttribute('data-note') || 'D5';
+        const cue = btn.getAttribute('data-cue') || 'Cue';
+
+        // Add visual pulse
+        btn.classList.add('pulse-trigger');
+        setTimeout(() => btn.classList.remove('pulse-trigger'), 600);
+
+        window.playChime(freq, `${note} (${Math.round(freq)}Hz)`);
+      });
+    });
+
+    // Master Hero Frame Audition Button
+    const heroChimeBtn = document.getElementById('master-hero-play-chime');
+    if (heroChimeBtn) {
+      heroChimeBtn.addEventListener('click', () => {
+        window.playChime(880.00, 'A5 (880Hz Master)');
+      });
+    }
+
+    // Cinematic Cybernetic Route Transition Sweep Orchestration
+    const overlay = document.getElementById('transitionOverlay');
+    let isTransitioning = false;
+
+    window.triggerRouteSweep = function(targetHash = null) {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      
+      // Synthesize crystalline route chime (D6 high-tech crystalline timbre)
+      if (window.playChime) {
+        window.playChime(1174.66, 'D6 (Sweep Crystalline Tone)');
+      }
+
+      if (prefersReducedMotion || !overlay) {
+        if (targetHash && targetHash.startsWith('#') && targetHash.length > 1) {
+          const el = document.querySelector(targetHash);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+        return;
+      }
+
+      if (isTransitioning) return;
+      isTransitioning = true;
+
+      // Trigger overlay scanline sweep
+      overlay.classList.add('active');
+
+      setTimeout(() => {
+        // Execute smooth scroll to anchor
+        if (targetHash) {
+          if (targetHash === '#' || targetHash === '') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } else {
+            const el = document.querySelector(targetHash);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+
+        // Complete transition sweep
+        setTimeout(() => {
+          overlay.classList.remove('active');
+          isTransitioning = false;
+        }, 140);
+      }, 180);
+    };
+
+    // Attach route transition listener to all designated navigation items and CTAs
+    const routeElements = document.querySelectorAll('.transition-route-trigger');
+    routeElements.forEach(item => {
+      item.addEventListener('click', (e) => {
+        const href = item.getAttribute('href');
+        if (href && (href.startsWith('#') || href === '')) {
+          e.preventDefault();
+          window.triggerRouteSweep(href);
+        }
+      });
+    });
+
+  })();
+</script>
+
+
+</body></html>
