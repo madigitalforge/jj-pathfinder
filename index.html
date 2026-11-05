@@ -52,16 +52,6 @@
         <span class="font-extrabold tracking-wider text-white text-base">JJ PATHFINDER</span>
       </a>
 
-      <!-- Capacity Urgency Pill -->
-      <div class="capacity-alert-wrapper hidden md:flex items-center gap-3 bg-[#191c21] border border-[#00f2fe]/30 rounded-full px-4 py-1.5 transition-all duration-300">
-        <span class="flex h-2 w-2 relative">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-        </span>
-        <span class="text-xs font-mono uppercase tracking-wider text-slate-300">Q1 Intake: <strong class="text-[#00f2fe]">2 Slots</strong></span>
-        <span class="text-xs font-mono text-slate-400">|</span>
-        <span data-countdown-compact class="text-xs font-mono text-[#00f2fe] font-bold">23h 59m 59s</span>
-      </div>
 
       <nav class="hidden md:flex items-center gap-6">
         <a href="work.html" class="text-sm font-medium text-slate-300 hover:text-[#00f2fe] transition-colors">Work</a>
@@ -88,31 +78,6 @@
         Engineered for top creators, DTC brands, and venture founders. 24–48h turnarounds, zero-friction revisions, and guaranteed retention curves.
       </p>
 
-      <!-- Capacity Alert Banner -->
-      <div class="max-w-xl mx-auto bg-[#111319] border border-[#00f2fe]/30 rounded-2xl p-4 mb-12 shadow-[0_0_20px_rgba(0,242,254,0.1)]">
-        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-2">
-          <span>● Q1 FINAL BATCH INTAKE</span>
-          <span class="text-emerald-400 font-bold">2 SLOTS AVAILABLE</span>
-        </div>
-        <div class="grid grid-cols-4 gap-2 text-center font-mono">
-          <div class="bg-[#191c21] p-2 rounded-lg border border-slate-800">
-            <span data-countdown-days class="block text-xl font-bold text-white">00</span>
-            <span class="text-[10px] text-slate-500 uppercase">Days</span>
-          </div>
-          <div class="bg-[#191c21] p-2 rounded-lg border border-slate-800">
-            <span data-countdown-hours class="block text-xl font-bold text-white">23</span>
-            <span class="text-[10px] text-slate-500 uppercase">Hours</span>
-          </div>
-          <div class="bg-[#191c21] p-2 rounded-lg border border-slate-800">
-            <span data-countdown-mins class="block text-xl font-bold text-white">59</span>
-            <span class="text-[10px] text-slate-500 uppercase">Mins</span>
-          </div>
-          <div class="bg-[#191c21] p-2 rounded-lg border border-slate-800">
-            <span data-countdown-secs class="block text-xl font-bold text-[#00f2fe]">59</span>
-            <span class="text-[10px] text-slate-500 uppercase">Secs</span>
-          </div>
-        </div>
-      </div>
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <a href="onboarding.html" class="w-full sm:w-auto bg-[#00f2fe] text-black font-bold px-8 py-3.5 rounded-xl hover:bg-cyan-300 transition-all shadow-[0_0_20px_rgba(0,242,254,0.4)]">
@@ -191,22 +156,6 @@
 
   <!-- Engines -->
   <script>
-    // Capacity Timer Engine
-    let totalSeconds = 23 * 3600 + 59 * 60 + 59;
-    const pad = (n) => String(n).padStart(2, '0');
-    function updateTimer() {
-      if (totalSeconds > 0) totalSeconds--;
-      const days = Math.floor(totalSeconds / 86400);
-      const hours = Math.floor((totalSeconds % 86400) / 3600);
-      const mins = Math.floor((totalSeconds % 3600) / 60);
-      const secs = totalSeconds % 60;
-      document.querySelectorAll('[data-countdown-days]').forEach(el => el.textContent = pad(days));
-      document.querySelectorAll('[data-countdown-hours]').forEach(el => el.textContent = pad(hours));
-      document.querySelectorAll('[data-countdown-mins]').forEach(el => el.textContent = pad(mins));
-      document.querySelectorAll('[data-countdown-secs]').forEach(el => el.textContent = pad(secs));
-      document.querySelectorAll('[data-countdown-compact]').forEach(el => el.textContent = `${pad(hours)}h ${pad(mins)}m ${pad(secs)}s`);
-    }
-    setInterval(updateTimer, 1000);
 
     // Single Open FAQ & Highlighting Engine
     const searchInput = document.getElementById('faq-search-input');
