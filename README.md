@@ -15,11 +15,10 @@ production set, so it was taken from the matching Stitch variant
 
 ## Pages
 
-- `index.html` — Home: the REAL jjpathfinder.com homepage (rebuilt
-  2026-11-05 after Dad rejected the bare Stitch hero+FAQ skeleton) — hero,
-  Core Services, portfolio, Advantage stats, testimonials, founder,
-  contact. All copy/numbers from the live site's own text; no countdown,
-  no invented stats.
+- `index.html` — Home: the shared Stitch production file, BYTE-IDENTICAL
+  to the zip (restored 2026-11-05 after Dad rejected my rebuild as dead).
+  Hero "We Turn Raw Footage Into Viral Authority", Q1 countdown, FAQ
+  search. Do NOT rebuild or restyle it — Dad wants it exactly as shared.
 - `work.html` — Work Vault / portfolio
 - `services.html` — Services & pricing: $1,850 / $3,400 / $5,900 per month
 - `case-study.html` — Retention breakdown with audio telemetry chimes
