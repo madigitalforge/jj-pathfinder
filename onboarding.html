@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Scope Inquiry — JJ Pathfinder</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#0c0e13] text-slate-100 font-sans antialiased">
+  <header class="sticky top-0 z-50 bg-[#111319]/90 backdrop-blur-md border-b border-[#00f2fe]/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-[#191c21] border border-[#00f2fe]/40 flex items-center justify-center font-mono text-[#00f2fe] font-black">JJ</div>
+        <span class="font-extrabold tracking-wider text-white">JJ PATHFINDER</span>
+      </a>
+      <a href="index.html" class="text-xs font-mono text-slate-400 hover:text-white">✕ CANCEL</a>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <div class="mb-8">
+      <span class="text-xs font-mono text-[#00f2fe] uppercase tracking-widest">ONBOARDING INTAKE</span>
+      <h1 class="text-3xl font-extrabold text-white mt-1">Project Scope & Strategy Intake</h1>
+      <p class="text-slate-400 text-sm mt-1">Configure your monthly production requirements. We reply within 24–48 hours.</p>
+    </div>
+
+    <form class="space-y-8" onsubmit="event.preventDefault(); alert('Demo form — this preview does not send anything yet. To enquire, message Ahtesham on WhatsApp +92 303 777 9335.');">
+      <div class="bg-[#111319] border border-slate-800 rounded-2xl p-6">
+        <h3 class="font-bold text-white text-base mb-4">1. Primary Content Format</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <label class="bg-[#191c21] border border-slate-700 hover:border-[#00f2fe] p-4 rounded-xl cursor-pointer flex flex-col gap-1">
+            <input type="radio" name="format" checked class="text-[#00f2fe] focus:ring-0">
+            <span class="font-bold text-sm text-white">Short-Form Viral</span>
+            <span class="text-xs text-slate-400">Reels, TikTok, Shorts</span>
+          </label>
+          <label class="bg-[#191c21] border border-slate-700 hover:border-[#00f2fe] p-4 rounded-xl cursor-pointer flex flex-col gap-1">
+            <input type="radio" name="format" class="text-[#00f2fe] focus:ring-0">
+            <span class="font-bold text-sm text-white">Long-Form YouTube</span>
+            <span class="text-xs text-slate-400">Essays, Multi-cam</span>
+          </label>
+          <label class="bg-[#191c21] border border-slate-700 hover:border-[#00f2fe] p-4 rounded-xl cursor-pointer flex flex-col gap-1">
+            <input type="radio" name="format" class="text-[#00f2fe] focus:ring-0">
+            <span class="font-bold text-sm text-white">Full Hybrid Retainer</span>
+            <span class="text-xs text-slate-400">Comprehensive studio</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="bg-[#111319] border border-slate-800 rounded-2xl p-6">
+        <h3 class="font-bold text-white text-base mb-4">2. Your Contact Channels</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-mono text-slate-400 mb-1">YOUR NAME</label>
+            <input type="text" name="name" required placeholder="Your name" class="w-full bg-[#191c21] border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#00f2fe]">
+          </div>
+          <div>
+            <label class="block text-xs font-mono text-slate-400 mb-1">EMAIL ADDRESS</label>
+            <input type="email" name="email" required placeholder="founder@brand.com" class="w-full bg-[#191c21] border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#00f2fe]">
+          </div>
+          <div>
+            <label class="block text-xs font-mono text-slate-400 mb-1">WHATSAPP / PHONE NUMBER</label>
+            <input type="text" name="phone" placeholder="+92 303 777 9335" class="w-full bg-[#191c21] border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#00f2fe]">
+          </div>
+          <div>
+            <label class="block text-xs font-mono text-slate-400 mb-1">CHANNEL / WEBSITE LINK</label>
+            <input type="url" name="website" placeholder="https://youtube.com/@channel" class="w-full bg-[#191c21] border border-slate-700 rounded-lg px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#00f2fe]">
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="w-full bg-[#00f2fe] text-black font-extrabold py-4 rounded-xl hover:bg-cyan-300 transition-all text-sm uppercase tracking-wider shadow-[0_0_20px_rgba(0,242,254,0.4)]">
+        Dispatch Inquiry Directly to Founder Desk
+      </button>
+    </form>
+  </main>
+</body>
+</html>
